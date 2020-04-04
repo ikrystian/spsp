@@ -4,7 +4,6 @@ const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const ImageminWebpWebpackPlugin = require('imagemin-webp-webpack-plugin');
-const ModernizrWebpackPlugin = require('modernizr-webpack-plugin');
 
 const generateHTMLPlugins = () => glob.sync('./src/**/*.html')
   .map(
