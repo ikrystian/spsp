@@ -1,9 +1,11 @@
-body {
-  font-family: 'Helvetica Neue', sans-serif;
-  text-align: center;
+@import 'abstracts/mixins';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-img {
-  display: block;
-  margin: 50px auto;
+body {
+  font-family: 'Helvetica Neue', sans-serif;
 }

@@ -1,0 +1,31 @@
+$bp-small: 34.375em; // 550px
+$bp-medium: 47.5em; // 760px
+$bp-desktop: 64em; // 1024px
+$bp-wide: 105em; // 1680px
+
+@mixin res($breakpoint) {
+
+  @if $breakpoint == wide {
+    @media screen and (min-width: $bp-wide) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == desktop {
+    @media screen and (min-width: $bp-desktop) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == tab {
+    @media screen and (min-width: $bp-medium) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == phone {
+    @media screen and (min-width: $bp-small) {
+      @content;
+    }
+  }
+}
