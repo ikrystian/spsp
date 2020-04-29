@@ -1,5 +1,5 @@
 import $ from 'jquery';
 
 $(document).ready(() => {
-  console.log('lorem ipsum');
+  console.log('document ready');
 });
