@@ -7,6 +7,10 @@
   --primary-color: #E50019;
   --button-color: #fff;
   --circle-border: rgba(0, 0, 0, 0.1);
+  --list-data-background-color: #fff;
+
+  --gradient-first-color: #AE0721;
+  --gradient-second-color: #E50019;
 }
 
 * {
@@ -142,6 +146,7 @@ body {
       right: -10%;
     }
   }
+
   &::before {
     bottom: -10%;
     right: -30%;
@@ -160,6 +165,10 @@ body {
   margin: auto;
   max-width: 100%;
   position: relative;
+
+  @include res(tab) {
+    padding: 5rem 2rem;
+  }
 
   &--row {
     display: flex;
@@ -201,11 +210,16 @@ body {
     }
   }
 
+
   &__subtitle {
     font-size: 1.25rem;
     text-align: center;
     color: var(--second-font-color);
-    margin-top: -1rem;
+    margin-top: -2.5rem;
+
+    @include res(desktop) {
+      text-align: left;
+    }
   }
 
   &__paragraph {
@@ -217,6 +231,17 @@ body {
   }
 
   &__lists {
+    display: flex;
+    flex-direction: column;
+
+    ul {
+      margin-right: 3rem;
+      margin-bottom: 4rem;
+    }
+
+    @include res(tab) {
+      flex-direction: row;
+    }
 
     &--col {
       display: flex;
@@ -226,6 +251,175 @@ body {
     + h4 {
       margin-top: 2rem;
     }
+  }
+}
+
+.fourth-title {
+  h6 {
+    color: var(--primary-color);
+    font-size: 43.125rem;
+
+    @include res(tab) {
+      position: relative;
+      top: -8rem;
+    }
+  }
+}
+
+.facts {
+  position: relative;
+  display: grid;
+
+  &::before {
+    background: linear-gradient(135deg, var(--gradient-first-color) 0%, var(--gradient-second-color) 100%);
+    top: 0;
+    bottom: 0;
+    width: 50vw;
+    content: '';
+    position: absolute;
+    left: 100%;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 20% 100%);
+    transform: translateX(-360px);
+
+  }
+
+  grid-template-areas:
+    "facts-title"
+    "facts-count"
+    "facts-chart";
+
+  @include res(tab) {
+    grid-template-areas:
+    "facts-title facts-title"
+    "facts-chart facts-count";
+  }
+
+  &__title {
+    grid-area: facts-title;
+    padding-bottom: 3rem;
+  }
+
+  &__chart {
+    grid-area: facts-chart;
+  }
+
+
+  &__data {
+    position: relative;
+    display: flex;
+    align-items: center;
+    grid-area: facts-count;
+
+    @include res(tab) {
+      margin-left: -300px;
+    }
+
+    > div {
+      position: relative;
+      padding: 1rem;
+    }
+
+    img {
+      margin: auto;
+    }
+  }
+}
+
+.list-data {
+  list-style: none;
+  text-align: center;
+  display: flex;
+  justify-content: space-around;
+  position: absolute;
+  width: 100%;
+
+  @include res(tab) {
+    position: static;
+  }
+
+  &__item {
+    width: 133px;
+    height: 133px;
+    background-color: var(--list-data-background-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+
+    &:nth-child(1) {
+      @include res(tab) {
+        position: absolute;
+        top: -120px;
+        right: -50px;
+      }
+    }
+
+    &:nth-child(2) {
+      @include res(tab) {
+        top: unset;
+        position: absolute;
+        bottom: 0;
+        right: -120px;
+      }
+    }
+  }
+
+  span {
+    font-size: 3.375rem;
+    line-height: 1;
+    color: var(--primary-color);
+
+  }
+}
+
+.s-chart {
+  width: 768px;
+  height: 440px;
+  position: relative;
+  margin-right: 0;
+
+  &__countries {
+    img {
+      position: absolute;
+      bottom: 97px;
+      z-index: 2;
+      left: 94px;
+      opacity: 0.2;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+  }
+
+  &__data {
+    padding: 2rem;
+
+    img {
+      position: absolute;
+      bottom: 80px;
+      left: 75px;
+      transform-origin: center bottom;
+      transform: scale(1);
+      opacity: 0.8;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+  }
+
+  &:hover img {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  &::after {
+    content: '';
+    z-index: 2;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 768px;
+    height: 156px;
+    background: url('../static/chart/bg.svg') center no-repeat;
   }
 }
 
@@ -255,6 +449,91 @@ body {
     @include res(desktop) {
       font-size: 11.3125rem;
       line-height: 10.125rem
+    }
+  }
+}
+
+.legend {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+
+  @include res(tab) {
+    justify-content: flex-start;
+    padding-left: 4rem;
+  }
+
+  &__item {
+    margin: 0.5rem 0.5rem 0.5rem 50px;
+    font-size: 1.875rem;
+    display: flex;
+    align-items: flex-end;
+    color: var(--second-font-color);
+    line-height: 1;
+    position: relative;
+
+    &::before {
+      content: '';
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      position: absolute;
+      left: -40px;
+      top: -2px;
+
+    }
+
+    &::after {
+      content: '';
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      position: absolute;
+      left: -31px;
+      top: 7px;
+    }
+
+    &--europe {
+      &::before {
+        background-color: #fff;
+        border: 1px solid var(--primary-color);
+      }
+
+      &::after {
+        background-color: var(--primary-color);
+      }
+    }
+
+    &--usa {
+      &::before {
+        background-color: #fff;
+        border: 1px solid var(--font-color);
+      }
+
+      &::after {
+        background-color: var(--font-color);
+      }
+    }
+
+    &--uae {
+      &::before {
+        background-color: #fff;
+        border: 1px solid var(--second-font-color);
+      }
+
+      &::after {
+        background-color: var(--second-font-color);
+      }
+    }
+
+    strong {
+      font-weight: 900;
+      padding-left: 0.5rem;
+    }
+
+    span {
+      font-size: 1.125rem;
+      margin-left: 0.5rem;
     }
   }
 }
@@ -334,6 +613,7 @@ body {
       will-change: border-radius;
       transition: border-radius 0.2s ease;
     }
+
     &::before {
       position: absolute;
       width: 14px;
@@ -354,13 +634,34 @@ body {
 .list {
   color: var(--primary-color);
   font-size: 1.25rem;
+  list-style: none;
+  padding-left: 1.5rem;
+
+  &__item {
+    position: relative;
+
+    &::before {
+      width: 10px;
+      height: 10px;
+      content: '';
+      background-color: var(--primary-color);
+      position: absolute;
+      top: 6px;
+      left: -19px;
+      border-radius: 50%;
+    }
+  }
 
   &--secondary {
     color: var(--font-color);
   }
 
   &--no-bullets {
-    list-style: none;
+    padding-left: 0;
+
+    li::before {
+      display: none !important;
+    }
   }
 }
 
