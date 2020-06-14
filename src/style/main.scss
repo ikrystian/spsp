@@ -20,6 +20,7 @@
 }
 
 body {
+  overflow-x: hidden;
   font-family: 'Raleway', sans-serif;
   font-weight: bold;
   font-size: 16px;
@@ -30,6 +31,7 @@ body {
 .header {
   display: flex;
   justify-content: space-between;
+  padding: 2rem;
 }
 
 .nav {
@@ -165,9 +167,23 @@ body {
   margin: auto;
   max-width: 100%;
   position: relative;
+  z-index: 2;
 
   @include res(tab) {
     padding: 5rem 2rem;
+  }
+
+  &--contact {
+    display: flex;
+    flex-direction: column;
+
+    @include res(desktop) {
+      flex-direction: row;
+    }
+
+    h2 {
+      margin-right: 5rem;
+    }
   }
 
   &--row {
@@ -187,12 +203,16 @@ body {
 
   &__title {
     font-size: 2.5rem;
-    line-height: 3.125rem;
+    line-height: 1;
     text-transform: uppercase;
     text-align: center;
     color: var(--primary-color);
     margin-bottom: 2rem;
     font-weight: 900;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
 
     @include res(desktop) {
       text-align: left;
@@ -203,11 +223,24 @@ body {
       color: var(--second-font-color);
     }
 
-    span {
-      font-size: 6.375rem;
-      position: relative;
-      top: 1rem;
+    &--large {
+      @include res(desktop) {
+        font-size: 6.625rem;
+      }
+
+      span {
+        font-size: 6.375rem;
+        position: relative;
+        top: 1rem;
+
+        @include res(desktop) {
+          font-size: 16.6875rem;
+          margin-top: -3rem;
+        }
+      }
     }
+
+
   }
 
 
@@ -234,8 +267,13 @@ body {
     display: flex;
     flex-direction: column;
 
-    ul {
+    h2 {
       margin-right: 3rem;
+    }
+
+    ul {
+      margin-right: 5rem;
+      text-transform: uppercase;
       margin-bottom: 4rem;
     }
 
@@ -245,7 +283,6 @@ body {
 
     &--col {
       display: flex;
-      justify-content: space-between;
     }
 
     + h4 {
@@ -263,6 +300,67 @@ body {
       position: relative;
       top: -8rem;
     }
+  }
+}
+
+.fifth-section {
+  display: flex;
+  flex-direction: column-reverse;
+
+  @include res(tab) {
+    flex-direction: row;
+  }
+
+  &__logos {
+    flex: 1;
+    display: flex;
+    align-items: center;
+  }
+}
+
+.sixth {
+  display: flex;
+  flex-direction: column-reverse;
+
+  @include res(tab) {
+    flex-direction: row;
+  }
+
+  &__title {
+    width: 544px;
+    max-width: 100%;
+    display: flex;
+    position: relative;
+  }
+
+  &__number {
+    z-index: 2;
+    mix-blend-mode: darken;
+  }
+
+  &__bg-1 {
+    pointer-events: none;
+    position: absolute;
+    right: -100px;
+    bottom: -700px;
+    z-index: 0;
+  }
+}
+
+.seventh {
+  &__number {
+    position: relative;
+    top: -10rem;
+    right: -5rem;
+    z-index: 2;
+    mix-blend-mode: darken;
+  }
+
+  &__bg {
+    position: absolute;
+    top: -1096px;
+    left: -237px;
+    z-index: 1;
   }
 }
 
@@ -455,6 +553,7 @@ body {
 
 .legend {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   list-style: none;
 
@@ -636,9 +735,15 @@ body {
   font-size: 1.25rem;
   list-style: none;
   padding-left: 1.5rem;
+  position: relative;
+  z-index: 2;
 
   &__item {
     position: relative;
+
+    @include res(tab) {
+      margin-bottom: 1rem;
+    }
 
     &::before {
       width: 10px;
@@ -674,15 +779,46 @@ body {
     display: flex;
     align-items: center;
     padding: 0.1rem;
+    margin-bottom: 1rem;
+
+    @include res(tab) {
+      width: 25%
+    }
+
+  }
+
+  &__link {
+    display: inline-block;
+    margin: auto;
+    opacity: 0.6;
+    will-change: opacity, transform;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    position: relative;
+    z-index: 3;
+
+    &:hover,
+    &:focus {
+      transform: translateY(-0.5rem);
+      opacity: 1;
+    }
   }
 
   &__image {
     max-height: 42px;
     max-width: 90px;
+
+    @include res(tab) {
+      max-height: 95px;
+      max-width: 205px;
+
+    }
   }
 }
 
 .form {
+  width: 415px;
+  max-width: 100%;
+
   &__group {
     display: flex;
     flex-direction: column-reverse;
