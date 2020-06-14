@@ -8,7 +8,7 @@
   --button-color: #fff;
   --circle-border: rgba(0, 0, 0, 0.1);
   --list-data-background-color: #fff;
-
+  --sticy-nav-background-color: #fff;
   --gradient-first-color: #AE0721;
   --gradient-second-color: #E50019;
 }
@@ -19,12 +19,17 @@
   box-sizing: border-box;
 }
 
+html, body {
+  scroll-behavior: smooth;
+}
+
 body {
   overflow-x: hidden;
   font-family: 'Raleway', sans-serif;
   font-weight: bold;
   font-size: 16px;
   line-height: 24px;
+  padding-top: 135px;
   color: var(--font-color);
 }
 
@@ -32,6 +37,19 @@ body {
   display: flex;
   justify-content: space-between;
   padding: 2rem;
+  height: 135px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 3;
+
+  &--sticky {
+    background-color: var(--sticy-nav-background-color);
+    height: 86px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+    padding: 0.5rem 2rem;
+  }
 }
 
 .nav {
@@ -139,6 +157,7 @@ body {
     position: absolute;
     bottom: -30%;
     right: -20%;
+    pointer-events: none;
 
     @include res(desktop) {
       width: 750px;
