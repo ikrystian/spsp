@@ -6,6 +6,7 @@
   --second-font-color: #1A1818;
   --primary-color: #E50019;
   --button-color: #fff;
+  --circle-border: rgba(0, 0, 0, 0.1);
 }
 
 * {
@@ -30,7 +31,7 @@ body {
 .nav {
   display: none;
 
-  @include res(medium) {
+  @include res(desktop) {
     display: flex;
     align-items: center;
   }
@@ -46,7 +47,7 @@ body {
     display: flex;
     align-items: center;
 
-    @include res(medium) {
+    @include res(desktop) {
       display: none;
     }
   }
@@ -77,13 +78,103 @@ body {
 }
 
 .main {
+  display: flex;
+  flex-direction: column;
+
+  @include res(desktop) {
+    margin-top: 3rem;
+    flex-direction: row;
+  }
+
+  &__section {
+    @include res(desktop) {
+      flex: 50%;
+    }
+
+    &--left {
+      @include res(desktop) {
+        padding-right: 3rem;
+      }
+    }
+
+    &--right {
+      position: absolute;
+      right: 1rem;
+      top: 2.5rem;
+
+      @include res(desktop) {
+        position: static;
+        right: unset;
+        top: unset;
+      }
+
+      img {
+        margin: auto;
+        width: 85px;
+        display: block;
+        @include res(desktop) {
+          width: auto;
+        }
+      }
+    }
+  }
+
   &__description {
     text-align: center;
+  }
+
+  &::after,
+  &::before {
+    content: '';
+    width: 310px;
+    height: 310px;
+    border-radius: 50%;
+    border: 1px solid var(--circle-border);
+    position: absolute;
+    bottom: -30%;
+    right: -20%;
+
+    @include res(desktop) {
+      width: 750px;
+      height: 750px;
+      bottom: unset;
+      top: -30%;
+      right: -10%;
+    }
+  }
+  &::before {
+    bottom: -10%;
+    right: -30%;
+
+    @include res(desktop) {
+      top: unset;
+      right: -10%;
+      bottom: -5%;
+    }
   }
 }
 
 .section {
   padding: 2rem;
+  width: 1390px;
+  margin: auto;
+  max-width: 100%;
+  position: relative;
+
+  &--row {
+    display: flex;
+    flex-direction: column-reverse;
+
+    @include res(desktop) {
+      flex-direction: row;
+    }
+  }
+
+  &__column {
+    flex: 50%;
+    align-items: center;
+    display: flex;
+  }
 
   &__title {
     font-size: 2.5rem;
@@ -93,6 +184,11 @@ body {
     color: var(--primary-color);
     margin-bottom: 2rem;
     font-weight: 900;
+
+    @include res(desktop) {
+      text-align: left;
+      margin-bottom: 3rem;
+    }
 
     &--secondary {
       color: var(--second-font-color);
@@ -114,6 +210,10 @@ body {
 
   &__paragraph {
     text-align: center;
+
+    @include res(desktop) {
+      text-align: left;
+    }
   }
 
   &__lists {
@@ -132,16 +232,122 @@ body {
 .title {
   text-transform: uppercase;
   margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
 
   &__first-line {
     font-size: 0.9375rem;
     font-weight: normal;
+    white-space: nowrap;
+    position: relative;
+
+    @include res(desktop) {
+      font-size: 2.625rem;
+      left: 0.5rem;
+    }
   }
 
   &__main-line {
     color: var(--second-font-color);
     font-size: 4.25rem;
     line-height: 3.8125rem;
+
+    @include res(desktop) {
+      font-size: 11.3125rem;
+      line-height: 10.125rem
+    }
+  }
+}
+
+.chart {
+  width: 611px;
+  height: 470px;
+  position: relative;
+  background: url('../static/sections/second.svg') center no-repeat;
+  font-size: 1.825rem;
+  font-family: 'Proxima Nova', sans-serif;
+  list-style: none;
+  font-weight: 900;
+  transform: scale(0.5) translate(-50%);
+  margin: -100px 0;
+
+  @include res(tab) {
+    margin: auto;
+    width: 611px;
+    height: 470px;
+    transform: none;
+  }
+
+  &__item {
+    position: absolute;
+
+    &:nth-child(1) {
+      top: 16%;
+      left: 25%;
+    }
+
+    &:nth-child(2) {
+      top: 36%;
+      left: 46%;
+    }
+
+    &:nth-child(3) {
+      top: 56%;
+      left: 36%;
+    }
+
+    &:nth-child(4) {
+      top: 80%;
+      left: 58%;
+    }
+
+    &:nth-child(5) {
+      top: 88%;
+      left: 23%;
+    }
+  }
+
+  &__name {
+    position: relative;
+    text-decoration: none;
+    color: var(--second-font-color);
+
+    &:hover,
+    &:focus {
+      text-decoration: underline;
+
+      &::after, &::before {
+        border-radius: 0;
+      }
+    }
+
+    &::after {
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 1px solid #fff;
+      right: -40px;
+      top: 6px;
+      content: '';
+      display: block;
+      will-change: border-radius;
+      transition: border-radius 0.2s ease;
+    }
+    &::before {
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background-color: #fff;
+      right: -34px;
+      top: 12px;
+      content: '';
+      display: block;
+      will-change: border-radius;
+      transition: border-radius 0.2s ease;
+    }
+
   }
 }
 

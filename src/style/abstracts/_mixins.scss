@@ -1,7 +1,7 @@
-$bp-small: 34.375em; // 550px
-$bp-medium: 47.5em; // 760px
-$bp-desktop: 64em; // 1024px
-$bp-wide: 105em; // 1680px
+$bp-small: 550px; // 550px
+$bp-medium: 760px; // 760px
+$bp-desktop: 1024px; // 1024px
+$bp-wide: 1680px; // 1680px
 
 @mixin res($breakpoint) {
 
